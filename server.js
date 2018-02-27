@@ -108,12 +108,15 @@ app.post('/recipes', jsonParser, (req, res) => {
 app.put('/recipes/:id', jsonParser, (req, res) => {
   const recipeFields = ["name", "id", "ingredients"];
   recipeFields.map((field) => {
+  for(let i = 0; i < recipeFields.length, i++) {
+    const field = recipeFields[i];
     if(!(field in req.body)) {
-      const message = `Missing \`${field}\` in request body`;
-      console.log(message);
-      return res.status(400).send(message);
-    }
-  });
+        const message = `Missing \`${field}\` in request body`;
+        console.log(message);
+        return res.status(400).send(message);
+      }
+  };
+
   if(req.params.id !== req.body.id) {
     const message = `Request path id (${req.params.id}) and 
     request body id (${req.body.id}) do not match`;
